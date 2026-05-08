@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="topbar">
-    <div class="container">
-      <div class="topbar-links">
-        <a href="contact.html">Order Tracking</a>
-        <a href="contact.html">Help Center</a>
-      </div>
-      <div>Latest personalization tips and ideas</div>
-    </div>
-  </div>
-
   <header>
     <div class="container header-main">
       <a class="brand" href="index.html" aria-label="CG Prints Home">
@@ -35,9 +25,9 @@
         </ul>
       </nav>
       <div class="header-actions">
-        <input class="search-box" type="search" placeholder="Search blogs..." aria-label="Search blogs" />
+        <button class="icon-btn menu-toggle js-menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
         <a class="icon-btn" href="cart.html" aria-label="Open cart">
-          <span>??</span>
+          <span>&#128722;</span>
           <span class="cart-count js-cart-count">0</span>
         </a>
       </div>
@@ -57,79 +47,68 @@
 
     <section>
       <div class="container">
-        <div class="blogs-grid">
-          <article class="blog-card">
-            <img src="banner/d1e43480-092e-4eba-93ea-4674bd090c20.png" alt="Gift ideas" />
-            <div class="blog-body">
-              <h3>7 Personalized Gift Ideas for 2026</h3>
-              <p>Thoughtful products that work across birthdays, festivals, and office celebrations.</p>
-              <a class="read-link" href="#">Read More</a>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <img src="banner/d1e43480-092e-4eba-93ea-4674bd090c20.png" alt="School labels" />
-            <div class="blog-body">
-              <h3>How to Choose Durable School Name Labels</h3>
-              <p>Material, adhesive, and print options every parent should verify before ordering.</p>
-              <a class="read-link" href="#">Read More</a>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <img src="banner/d1e43480-092e-4eba-93ea-4674bd090c20.png" alt="Wall decor" />
-            <div class="blog-body">
-              <h3>Turning Family Photos Into Modern Wall Decor</h3>
-              <p>Frame sizes, layout logic, and finish selection for premium home styling.</p>
-              <a class="read-link" href="#">Read More</a>
-            </div>
-          </article>
-        </div>
+        <p id="blogsStatus" class="api-status">Loading blogs...</p>
+        <div class="blogs-grid" id="blogsGrid"></div>
       </div>
     </section>
   </main>
-
-  <footer>
+  <footer class="site-footer">
     <div class="container">
-      <div class="footer-grid">
-        <div>
-          <h3>CG Prints</h3>
-          <ul>
-            <li>Design. Print. Deliver.</li>
-            <li>Premium quality with trusted service.</li>
-          </ul>
+      <div class="footer-grid-premium">
+        <div class="footer-brand-panel">
+          <div class="footer-brand-row">
+            <img class="footer-logo" src="CG p LOGO (1).png" alt="ChhabiGhar logo" />
+            <h3>Chhabi<span>Ghar</span></h3>
+          </div>
+          <p>A house of quality framing and printing. Customize your memories with us using premium materials and expert craftsmanship.</p>
+          <div class="social-links" aria-label="Social links">
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">ig</a>
+            <a href="https://x.com/" target="_blank" rel="noopener" aria-label="X">x</a>
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube">yt</a>
+          </div>
         </div>
-        <div>
+
+        <div class="footer-col">
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="index.html">Shop All Products</a></li>
+            <li><a href="blogs.html">Our Gallery</a></li>
+            <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
-        <div>
-          <h3>Customer Help</h3>
+
+        <div class="footer-col">
+          <h3>Categories</h3>
           <ul>
-            <li>Shipping Policy</li>
-            <li>Return Policy</li>
-            <li>Privacy Policy</li>
-            <li>Terms and Conditions</li>
+            <li><a href="index.html#featured">Custom Photo Frames</a></li>
+            <li><a href="index.html#featured">Name Stickers</a></li>
+            <li><a href="index.html#featured">School Supplies</a></li>
+            <li><a href="index.html#featured">Personalized Gifts</a></li>
           </ul>
         </div>
-        <div>
+
+        <div class="footer-col">
           <h3>Contact</h3>
           <ul>
-            <li>Email: support@cgprints.in</li>
+            <li>Email: support@chhabighar.com</li>
             <li>Phone: +91 98765 43210</li>
             <li>Mon-Sat: 10 AM to 7 PM</li>
+            <li>New Delhi, India</li>
           </ul>
         </div>
       </div>
-      <p class="copyright">Copyright 2026 CG Prints. All rights reserved.</p>
+      <p class="copyright">Copyright 2026 ChhabiGhar. All rights reserved.</p>
     </div>
   </footer>
-
-  <script src="app.js"></script>
+<script src="api-config.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
+
+
+
+
+
+

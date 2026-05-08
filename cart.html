@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="topbar">
-    <div class="container">
-      <div class="topbar-links">
-        <a href="contact.html">Order Tracking</a>
-        <a href="contact.html">Help Center</a>
-      </div>
-      <div>Secure checkout and safe payment flow</div>
-    </div>
-  </div>
-
   <header>
     <div class="container header-main">
       <a class="brand" href="index.html" aria-label="CG Prints Home">
@@ -35,9 +25,9 @@
         </ul>
       </nav>
       <div class="header-actions">
-        <input class="search-box" type="search" placeholder="Search products..." aria-label="Search products" />
+        <button class="icon-btn menu-toggle js-menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
         <a class="icon-btn" href="cart.html" aria-label="Open cart">
-          <span>??</span>
+          <span>&#128722;</span>
           <span class="cart-count js-cart-count">0</span>
         </a>
       </div>
@@ -69,55 +59,78 @@
             <p>Shipping: <strong>Rs.<span id="shipping">0</span></strong></p>
             <p>Total: <strong>Rs.<span id="cartTotal">0</span></strong></p>
           </div>
-          <button class="btn btn-primary" style="margin-top: 16px; width: 100%;">Proceed to Checkout</button>
+          <div class="checkout-fields">
+            <input id="checkoutName" type="text" placeholder="Customer Name *" />
+            <input id="checkoutPhone" type="text" placeholder="Phone Number *" />
+            <input id="checkoutEmail" type="email" placeholder="Email (optional)" />
+            <input id="checkoutAddress" type="text" placeholder="Address (optional)" />
+            <input id="checkoutCity" type="text" placeholder="City (optional)" />
+          </div>
+          <button id="checkoutBtn" class="btn btn-primary" style="margin-top: 16px; width: 100%;">Proceed to Checkout</button>
+          <p id="checkoutMessage" class="api-status"></p>
           <button id="clearCart" class="btn btn-light" style="margin-top: 10px; width: 100%;">Clear Cart</button>
         </div>
       </div>
     </section>
   </main>
-
-  <footer>
+  <footer class="site-footer">
     <div class="container">
-      <div class="footer-grid">
-        <div>
-          <h3>CG Prints</h3>
-          <ul>
-            <li>Design. Print. Deliver.</li>
-            <li>Premium quality with trusted service.</li>
-          </ul>
+      <div class="footer-grid-premium">
+        <div class="footer-brand-panel">
+          <div class="footer-brand-row">
+            <img class="footer-logo" src="CG p LOGO (1).png" alt="ChhabiGhar logo" />
+            <h3>Chhabi<span>Ghar</span></h3>
+          </div>
+          <p>A house of quality framing and printing. Customize your memories with us using premium materials and expert craftsmanship.</p>
+          <div class="social-links" aria-label="Social links">
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">ig</a>
+            <a href="https://x.com/" target="_blank" rel="noopener" aria-label="X">x</a>
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube">yt</a>
+          </div>
         </div>
-        <div>
+
+        <div class="footer-col">
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="index.html">Shop All Products</a></li>
+            <li><a href="blogs.html">Our Gallery</a></li>
+            <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
-        <div>
-          <h3>Customer Help</h3>
+
+        <div class="footer-col">
+          <h3>Categories</h3>
           <ul>
-            <li>Shipping Policy</li>
-            <li>Return Policy</li>
-            <li>Privacy Policy</li>
-            <li>Terms and Conditions</li>
+            <li><a href="index.html#featured">Custom Photo Frames</a></li>
+            <li><a href="index.html#featured">Name Stickers</a></li>
+            <li><a href="index.html#featured">School Supplies</a></li>
+            <li><a href="index.html#featured">Personalized Gifts</a></li>
           </ul>
         </div>
-        <div>
+
+        <div class="footer-col">
           <h3>Contact</h3>
           <ul>
-            <li>Email: support@cgprints.in</li>
+            <li>Email: support@chhabighar.com</li>
             <li>Phone: +91 98765 43210</li>
             <li>Mon-Sat: 10 AM to 7 PM</li>
+            <li>New Delhi, India</li>
           </ul>
         </div>
       </div>
-      <p class="copyright">Copyright 2026 CG Prints. All rights reserved.</p>
+      <p class="copyright">Copyright 2026 ChhabiGhar. All rights reserved.</p>
     </div>
   </footer>
-
+<script src="api-config.js"></script>
   <script src="app.js"></script>
   <script src="cart.js"></script>
 </body>
 </html>
+
+
+
+
+
+

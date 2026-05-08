@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="topbar">
-    <div class="container">
-      <div class="topbar-links">
-        <a href="contact.html">Order Tracking</a>
-        <a href="contact.html">Help Center</a>
-      </div>
-      <div>Free shipping on all prepaid orders above Rs.499</div>
-    </div>
-  </div>
-
   <header>
     <div class="container header-main">
       <a class="brand" href="index.html" aria-label="CG Prints Home">
@@ -37,9 +27,9 @@
       </nav>
 
       <div class="header-actions">
-        <input class="search-box" type="search" placeholder="Search gifts, frames, custom items..." aria-label="Search products" />
+        <button class="icon-btn menu-toggle js-menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
         <a class="icon-btn" href="cart.html" aria-label="Open cart">
-          <span>??</span>
+          <span>&#128722;</span>
           <span class="cart-count js-cart-count">0</span>
         </a>
       </div>
@@ -47,19 +37,18 @@
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow">Premium Personalization Studio</span>
-          <h1>Print stories that people remember.</h1>
-          <p>From photo frames to custom school kits, CG Prints delivers beautifully crafted personalized products designed for gifting, branding, and everyday joy.</p>
-          <div class="cta-row">
-            <a href="#featured" class="btn btn-primary">Shop Now</a>
-            <a href="about.html" class="btn btn-light">Why Choose Us</a>
+    <section class="hero banner-showcase">
+      <div class="container">
+        <div class="banner-slider js-banner-slider" aria-label="Promotional Banners">
+          <div class="banner-slide is-active">
+            <img src="banner/d1e43480-092e-4eba-93ea-4674bd090c20.png" alt="CG Prints promotional banner 1" />
           </div>
-        </div>
-        <div class="hero-banner">
-          <img src="banner/d1e43480-092e-4eba-93ea-4674bd090c20.png" alt="Promotional banner" />
+          <div class="banner-slide">
+            <img src="banner/CG p LOGO.png" alt="CG Prints promotional banner 2" />
+          </div>
+          <button class="banner-control prev js-banner-prev" type="button" aria-label="Previous banner">&#8249;</button>
+          <button class="banner-control next js-banner-next" type="button" aria-label="Next banner">&#8250;</button>
+          <div class="banner-dots js-banner-dots" aria-hidden="true"></div>
         </div>
       </div>
     </section>
@@ -72,19 +61,19 @@
         </div>
         <div class="category-grid">
           <article class="category-card">
-            <div class="category-thumb">??</div>
+            <div class="category-thumb">SS</div>
             <h3>School Supplies</h3>
           </article>
           <article class="category-card">
-            <div class="category-thumb">??</div>
+            <div class="category-thumb">PF</div>
             <h3>Photo Frames</h3>
           </article>
           <article class="category-card">
-            <div class="category-thumb">?</div>
+            <div class="category-thumb">CG</div>
             <h3>Custom Gifts</h3>
           </article>
           <article class="category-card">
-            <div class="category-thumb">??</div>
+            <div class="category-thumb">NS</div>
             <h3>Name Stickers</h3>
           </article>
         </div>
@@ -95,97 +84,67 @@
       <div class="container">
         <div class="section-head">
           <h2>Featured Products</h2>
-          <p>Handpicked bestsellers with sharp print quality and trusted material finish.</p>
+          <p>Live products synced from ChhabiGhar store API.</p>
         </div>
-
-        <div class="product-grid">
-          <article class="product-card">
-            <img src="banner/d1e43480-092e-4eba-93ea-4674bd090c20.png" alt="A3 premium photo frame" />
-            <div class="product-info">
-              <span class="chip">Best Seller</span>
-              <h3 class="product-title">Premium A3 Photo Frame</h3>
-              <div class="price-row"><span class="price">Rs.399</span><span class="old-price">Rs.800</span></div>
-              <button class="btn btn-primary js-add-to-cart" data-name="Premium A3 Photo Frame" data-price="399">Add to Cart</button>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <img src="banner/d1e43480-092e-4eba-93ea-4674bd090c20.png" alt="A4 custom frame" />
-            <div class="product-info">
-              <span class="chip">Top Rated</span>
-              <h3 class="product-title">Classic A4 Custom Frame</h3>
-              <div class="price-row"><span class="price">Rs.299</span><span class="old-price">Rs.600</span></div>
-              <button class="btn btn-primary js-add-to-cart" data-name="Classic A4 Custom Frame" data-price="299">Add to Cart</button>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <img src="banner/d1e43480-092e-4eba-93ea-4674bd090c20.png" alt="A5 gift frame" />
-            <div class="product-info">
-              <span class="chip">Gift Favorite</span>
-              <h3 class="product-title">Compact A5 Gift Frame</h3>
-              <div class="price-row"><span class="price">Rs.199</span><span class="old-price">Rs.400</span></div>
-              <button class="btn btn-primary js-add-to-cart" data-name="Compact A5 Gift Frame" data-price="199">Add to Cart</button>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <img src="banner/d1e43480-092e-4eba-93ea-4674bd090c20.png" alt="4x4 mini frame" />
-            <div class="product-info">
-              <span class="chip">Pocket Budget</span>
-              <h3 class="product-title">4x4 Mini Memory Frame</h3>
-              <div class="price-row"><span class="price">Rs.125</span><span class="old-price">Rs.250</span></div>
-              <button class="btn btn-primary js-add-to-cart" data-name="4x4 Mini Memory Frame" data-price="125">Add to Cart</button>
-            </div>
-          </article>
-        </div>
+        <p id="productsStatus" class="api-status">Loading products...</p>
+        <div class="product-grid" id="featuredProducts"></div>
       </div>
     </section>
   </main>
-
-  <footer>
+  <footer class="site-footer">
     <div class="container">
-      <div class="footer-grid">
-        <div>
-          <h3>CG Prints</h3>
-          <ul>
-            <li>Design. Print. Deliver.</li>
-            <li>Premium quality with trusted service.</li>
-          </ul>
+      <div class="footer-grid-premium">
+        <div class="footer-brand-panel">
+          <div class="footer-brand-row">
+            <img class="footer-logo" src="CG p LOGO (1).png" alt="ChhabiGhar logo" />
+            <h3>Chhabi<span>Ghar</span></h3>
+          </div>
+          <p>A house of quality framing and printing. Customize your memories with us using premium materials and expert craftsmanship.</p>
+          <div class="social-links" aria-label="Social links">
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">ig</a>
+            <a href="https://x.com/" target="_blank" rel="noopener" aria-label="X">x</a>
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube">yt</a>
+          </div>
         </div>
 
-        <div>
+        <div class="footer-col">
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="index.html">Shop All Products</a></li>
+            <li><a href="blogs.html">Our Gallery</a></li>
+            <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
 
-        <div>
-          <h3>Customer Help</h3>
+        <div class="footer-col">
+          <h3>Categories</h3>
           <ul>
-            <li>Shipping Policy</li>
-            <li>Return Policy</li>
-            <li>Privacy Policy</li>
-            <li>Terms and Conditions</li>
+            <li><a href="index.html#featured">Custom Photo Frames</a></li>
+            <li><a href="index.html#featured">Name Stickers</a></li>
+            <li><a href="index.html#featured">School Supplies</a></li>
+            <li><a href="index.html#featured">Personalized Gifts</a></li>
           </ul>
         </div>
 
-        <div>
-          <h3>Newsletter</h3>
+        <div class="footer-col">
+          <h3>Contact</h3>
           <ul>
-            <li>Get product drops and offers every week.</li>
-            <li><input type="email" placeholder="Enter your email" /></li>
+            <li>Email: support@chhabighar.com</li>
+            <li>Phone: +91 98765 43210</li>
+            <li>Mon-Sat: 10 AM to 7 PM</li>
+            <li>New Delhi, India</li>
           </ul>
         </div>
       </div>
-      <p class="copyright">Copyright 2026 CG Prints. All rights reserved.</p>
+      <p class="copyright">Copyright 2026 ChhabiGhar. All rights reserved.</p>
     </div>
   </footer>
-
-  <script src="app.js"></script>
+<script src="api-config.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
+
+
+
