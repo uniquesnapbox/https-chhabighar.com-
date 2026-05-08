@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CG Prints | Cart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-links">
+        <a href="contact.html">Order Tracking</a>
+        <a href="contact.html">Help Center</a>
+      </div>
+      <div>Secure checkout and safe payment flow</div>
+    </div>
+  </div>
+
+  <header>
+    <div class="container header-main">
+      <a class="brand" href="index.html" aria-label="CG Prints Home">
+        <img src="CG p LOGO (1).png" alt="CG Prints Logo" />
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="blogs.html">Blogs</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a class="active" href="cart.html">Cart</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <input class="search-box" type="search" placeholder="Search products..." aria-label="Search products" />
+        <a class="icon-btn" href="cart.html" aria-label="Open cart">
+          <span>??</span>
+          <span class="cart-count js-cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="panel">
+          <span class="eyebrow">Your Cart</span>
+          <h1>Review your selected products.</h1>
+          <p class="list-muted">Update quantities, remove items, and proceed to checkout when you are ready.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="categories">
+      <div class="container cart-layout">
+        <div class="cart-panel">
+          <h3>Cart Items</h3>
+          <div id="cartItems" style="margin-top: 12px;"></div>
+        </div>
+
+        <div class="cart-panel">
+          <h3>Order Summary</h3>
+          <div style="margin-top: 14px; display: grid; gap: 8px;">
+            <p>Subtotal: <strong>Rs.<span id="cartSubtotal">0</span></strong></p>
+            <p>Shipping: <strong>Rs.<span id="shipping">0</span></strong></p>
+            <p>Total: <strong>Rs.<span id="cartTotal">0</span></strong></p>
+          </div>
+          <button class="btn btn-primary" style="margin-top: 16px; width: 100%;">Proceed to Checkout</button>
+          <button id="clearCart" class="btn btn-light" style="margin-top: 10px; width: 100%;">Clear Cart</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>CG Prints</h3>
+          <ul>
+            <li>Design. Print. Deliver.</li>
+            <li>Premium quality with trusted service.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Customer Help</h3>
+          <ul>
+            <li>Shipping Policy</li>
+            <li>Return Policy</li>
+            <li>Privacy Policy</li>
+            <li>Terms and Conditions</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <ul>
+            <li>Email: support@cgprints.in</li>
+            <li>Phone: +91 98765 43210</li>
+            <li>Mon-Sat: 10 AM to 7 PM</li>
+          </ul>
+        </div>
+      </div>
+      <p class="copyright">Copyright 2026 CG Prints. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script src="cart.js"></script>
+</body>
+</html>
