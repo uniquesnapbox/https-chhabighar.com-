@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CG Prints | Blogs</title>
+  <title>CG Prints | Products</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -15,16 +15,18 @@
       <a class="brand" href="index.html" aria-label="CG Prints Home">
         <img src="CG p LOGO (1).png" alt="CG Prints Logo" />
       </a>
+
       <nav>
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="products.html">Products</a></li>
+          <li><a class="active" href="products.html">Products</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a class="active" href="blogs.html">Blogs</a></li>
+          <li><a href="blogs.html">Blogs</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="cart.html">Cart</a></li>
         </ul>
       </nav>
+
       <div class="header-actions">
         <button class="icon-btn menu-toggle js-menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
         <a class="icon-btn" href="cart.html" aria-label="Open cart">
@@ -39,20 +41,28 @@
     <section class="page-hero">
       <div class="container">
         <div class="panel">
-          <span class="eyebrow">Blog Library</span>
-          <h1>Insights for gifting, branding, and memories.</h1>
-          <p class="list-muted">Practical guides from the CG Prints team to help you choose better products and create meaningful personalized experiences.</p>
+          <span class="eyebrow">Products</span>
+          <h1>Choose your product and place order.</h1>
+          <p class="list-muted">Add items to cart and continue to checkout page to place your order.</p>
+          <div class="cta-row" style="margin-top: 12px;">
+            <a class="btn btn-primary" href="cart.html">Go to Cart Checkout</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <section>
+    <section id="featured" class="categories">
       <div class="container">
-        <p id="blogsStatus" class="api-status">Loading blogs...</p>
-        <div class="blogs-grid" id="blogsGrid"></div>
+        <div class="section-head">
+          <h2>All Products</h2>
+          <p>Live products synced from ChhabiGhar store API.</p>
+        </div>
+        <p id="productsStatus" class="api-status">Loading products...</p>
+        <div class="product-grid" id="featuredProducts"></div>
       </div>
     </section>
   </main>
+
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid-premium">
@@ -111,16 +121,9 @@
       <p class="copyright">Copyright 2026 ChhabiGhar. All rights reserved.</p>
     </div>
   </footer>
-<script src="api-config.js"></script>
-<script src="app.js"></script>
+
+  <script src="api-config.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
 
