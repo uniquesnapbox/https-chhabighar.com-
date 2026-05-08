@@ -9,6 +9,60 @@
     },
     window.CG_API || {}
   );
+  const FALLBACK_PRODUCTS = [
+    {
+      product_id: 10001,
+      title: "Premium A3 Photo Frame",
+      current_price: 399,
+      previous_price: 800,
+      is_feature: 1,
+      feature_image: ""
+    },
+    {
+      product_id: 10002,
+      title: "Classic A4 Custom Frame",
+      current_price: 299,
+      previous_price: 600,
+      is_feature: 1,
+      feature_image: ""
+    },
+    {
+      product_id: 10003,
+      title: "Compact A5 Gift Frame",
+      current_price: 199,
+      previous_price: 400,
+      is_feature: 0,
+      feature_image: ""
+    },
+    {
+      product_id: 10004,
+      title: "4x4 Mini Memory Frame",
+      current_price: 125,
+      previous_price: 250,
+      is_feature: 0,
+      feature_image: ""
+    }
+  ];
+  const FALLBACK_BLOGS = [
+    {
+      title: "7 Personalized Gift Ideas for 2026",
+      content:
+        "Thoughtful products that work across birthdays, festivals, and office celebrations.",
+      image: ""
+    },
+    {
+      title: "How to Choose Durable School Name Labels",
+      content:
+        "Material, adhesive, and print options every parent should verify before ordering.",
+      image: ""
+    },
+    {
+      title: "Turning Family Photos Into Modern Wall Decor",
+      content:
+        "Frame sizes, layout logic, and finish selection for premium home styling.",
+      image: ""
+    }
+  ];
 
   function escapeHtml(value) {
     return String(value == null ? "" : value)
@@ -245,8 +299,12 @@
       renderProducts(products);
       setStatus(status, "Live products loaded successfully.", "success");
     } catch (error) {
-      grid.innerHTML = "";
-      setStatus(status, "Could not load products: " + error.message, "error");
+      renderProducts(FALLBACK_PRODUCTS);
+      setStatus(
+        status,
+        "Live API unavailable right now, showing backup products.",
+        "warn"
+      );
     }
   }
 
@@ -275,8 +333,12 @@
       renderBlogs(blogs);
       setStatus(status, "Live blogs loaded successfully.", "success");
     } catch (error) {
-      grid.innerHTML = "";
-      setStatus(status, "Could not load blogs: " + error.message, "error");
+      renderBlogs(FALLBACK_BLOGS);
+      setStatus(
+        status,
+        "Live API unavailable right now, showing backup blogs.",
+        "warn"
+      );
     }
   }
 
