@@ -5,7 +5,7 @@
   const API = Object.assign(
     {
       baseUrl: "https://zestixe.in/api/v1/sync",
-      username: "chahbighar",
+      username: "chhabighar",
       apiKey: ""
     },
     window.CG_API || {}
@@ -427,8 +427,26 @@
     }
 
     setStatus(status, "Loading products...", "");
+    let sourceProducts = [];
+    let isFallback = false;
 
-    const filteredProducts = filterProductsByQuery(CUSTOM_PRODUCTS, query);
+    try {
+      const url =
+        API.baseUrl +
+        "/" +
+        encodeURIComponent(API.username) +
+        "/products?per_page=100";
+      const payload = await fetchJson(url);
+      sourceProducts = Array.isArray(payload && payload.data) ? payload.data : [];
+      if (!sourceProducts.length) {
+        throw new Error("No products received from API.");
+      }
+    } catch (error) {
+      sourceProducts = CUSTOM_PRODUCTS;
+      isFallback = true;
+    }
+
+    const filteredProducts = filterProductsByQuery(sourceProducts, query);
     if (query && !filteredProducts.length) {
       grid.innerHTML = "";
       setStatus(status, "No products found for \"" + query + "\".", "warn");
@@ -439,11 +457,21 @@
     renderProducts(productsToRender);
 
     if (query) {
-      setStatus(status, "Showing results for \"" + query + "\".", "success");
+      setStatus(
+        status,
+        "Showing results for \"" + query + "\"" + (isFallback ? " (fallback mode)." : "."),
+        isFallback ? "warn" : "success"
+      );
+    } else if (isFallback) {
+      setStatus(
+        status,
+        "Live product API unavailable right now. Showing fallback product list.",
+        "warn"
+      );
     } else if (isHomePage()) {
-      setStatus(status, "Showing top products. Tap Show All for full catalog.", "success");
+      setStatus(status, "Live products loaded. Tap Show All for full catalog.", "success");
     } else {
-      setStatus(status, "Products loaded successfully.", "success");
+      setStatus(status, "Live products loaded successfully.", "success");
     }
   }
 

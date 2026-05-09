@@ -2,7 +2,7 @@
   const API = Object.assign(
     {
       baseUrl: "https://zestixe.in/api/v1/sync",
-      username: "chahbighar",
+      username: "chhabighar",
       apiKey: ""
     },
     window.CG_API || {}
@@ -117,6 +117,18 @@
           checkoutMessageNode,
           "Some cart items are invalid for API checkout. Add products again from live products list.",
           "error"
+        );
+        return;
+      }
+
+      const localOnlyProduct = cart.find(function (item) {
+        return Number(item.productId) >= 20000;
+      });
+      if (localOnlyProduct) {
+        setCheckoutMessage(
+          checkoutMessageNode,
+          "You have fallback/local products in cart. Please reload products from live API, then checkout.",
+          "warn"
         );
         return;
       }
