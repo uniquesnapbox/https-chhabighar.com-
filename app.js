@@ -1,5 +1,6 @@
 (function () {
   const CART_KEY = "cgprints_cart";
+  const SEARCH_KEY = "cgprints_search_term";
   const DEFAULT_PRODUCT_IMAGE = "banner/d1e43480-092e-4eba-93ea-4674bd090c20.png";
   const API = Object.assign(
     {
@@ -9,6 +10,148 @@
     },
     window.CG_API || {}
   );
+  const CUSTOM_PRODUCTS = [
+    {
+      product_id: 20001,
+      title: "Customise Frame",
+      current_price: 399,
+      previous_price: 599,
+      is_feature: 1,
+      feature_image: "CTEGORY/PHOTO FRAME.png"
+    },
+    {
+      product_id: 20002,
+      title: "Keychain",
+      current_price: 149,
+      previous_price: 249,
+      is_feature: 1,
+      feature_image: "CTEGORY/KEYCHAIN.png"
+    },
+    {
+      product_id: 20003,
+      title: "Customise Coffee Mug",
+      current_price: 299,
+      previous_price: 449,
+      is_feature: 1,
+      feature_image: "CTEGORY/MUG.png"
+    },
+    {
+      product_id: 20004,
+      title: "T-Shirt Print",
+      current_price: 499,
+      previous_price: 699,
+      is_feature: 1,
+      feature_image: "CTEGORY/T SHIRT.png"
+    },
+    {
+      product_id: 20005,
+      title: "Customise Pillow Print",
+      current_price: 349,
+      previous_price: 499,
+      is_feature: 1,
+      feature_image: "CTEGORY/PILLOW.png"
+    },
+    {
+      product_id: 20006,
+      title: "Customise Wall Clock",
+      current_price: 599,
+      previous_price: 799,
+      is_feature: 0,
+      feature_image: "CTEGORY/WALL CLOCK.png"
+    },
+    {
+      product_id: 20007,
+      title: "LED Frame",
+      current_price: 699,
+      previous_price: 999,
+      is_feature: 1,
+      feature_image: "CTEGORY/LED FRAME.png"
+    },
+    {
+      product_id: 20008,
+      title: "Customise Rotating LED Lamp",
+      current_price: 899,
+      previous_price: 1199,
+      is_feature: 1,
+      feature_image: "CTEGORY/LED FRAME.png"
+    },
+    {
+      product_id: 20009,
+      title: "LED Night Lamp",
+      current_price: 649,
+      previous_price: 899,
+      is_feature: 0,
+      feature_image: "CTEGORY/LED FRAME.png"
+    },
+    {
+      product_id: 20010,
+      title: "LED Magic Mirror",
+      current_price: 999,
+      previous_price: 1399,
+      is_feature: 1,
+      feature_image: "CTEGORY/LED FRAME.png"
+    },
+    {
+      product_id: 20011,
+      title: "Visiting Card",
+      current_price: 199,
+      previous_price: 299,
+      is_feature: 0,
+      feature_image: "banner/d1e43480-092e-4eba-93ea-4674bd090c20.png"
+    },
+    {
+      product_id: 20012,
+      title: "Customise Sticker Print",
+      current_price: 149,
+      previous_price: 249,
+      is_feature: 0,
+      feature_image: "banner/d1e43480-092e-4eba-93ea-4674bd090c20.png"
+    },
+    {
+      product_id: 20013,
+      title: "Customise Stone Print",
+      current_price: 549,
+      previous_price: 749,
+      is_feature: 0,
+      feature_image: "CTEGORY/PHOTO FRAME.png"
+    },
+    {
+      product_id: 20014,
+      title: "Acrylic Magnetic Frame",
+      current_price: 499,
+      previous_price: 699,
+      is_feature: 0,
+      feature_image: "CTEGORY/PHOTO FRAME.png"
+    },
+    {
+      product_id: 20015,
+      title: "Customise Badge",
+      current_price: 99,
+      previous_price: 149,
+      is_feature: 0,
+      feature_image: "banner/d1e43480-092e-4eba-93ea-4674bd090c20.png"
+    }
+  ];
+  const FALLBACK_BLOGS = [
+    {
+      title: "7 Personalized Gift Ideas for 2026",
+      content:
+        "Thoughtful products that work across birthdays, festivals, and office celebrations.",
+      image: ""
+    },
+    {
+      title: "How to Choose Durable School Name Labels",
+      content:
+        "Material, adhesive, and print options every parent should verify before ordering.",
+      image: ""
+    },
+    {
+      title: "Turning Family Photos Into Modern Wall Decor",
+      content:
+        "Frame sizes, layout logic, and finish selection for premium home styling.",
+      image: ""
+    }
+  ];
 
   function escapeHtml(value) {
     return String(value == null ? "" : value)
@@ -85,7 +228,18 @@
     if (/^https?:\/\//i.test(featureImage)) {
       return featureImage;
     }
+    if (
+      /^(?:\.{0,2}\/)?(?:banner|CTEGORY)\//i.test(featureImage) ||
+      /^\/?(?:banner|CTEGORY)\//i.test(featureImage)
+    ) {
+      return featureImage.replace(/^\/+/, "");
+    }
     return "https://zestixe.in/assets/front/img/user/items/feature/" + featureImage;
+  }
+
+  function isHomePage() {
+    const path = String(window.location.pathname || "").toLowerCase();
+    return path.endsWith("/index.html") || path.endsWith("/") || path === "";
   }
 
   function getApiHeaders() {
@@ -124,6 +278,50 @@
     }
     node.textContent = text;
     node.className = "api-status" + (type ? " " + type : "");
+  }
+
+  function getSearchQuery() {
+    let fromUrl = "";
+    try {
+      const params = new URLSearchParams(window.location.search || "");
+      fromUrl = String(params.get("q") || "").trim();
+    } catch (err) {
+      fromUrl = "";
+    }
+
+    if (fromUrl) {
+      try {
+        sessionStorage.setItem(SEARCH_KEY, fromUrl);
+      } catch (err) {
+        // ignore storage errors
+      }
+      return fromUrl;
+    }
+
+    try {
+      return String(sessionStorage.getItem(SEARCH_KEY) || "").trim();
+    } catch (err) {
+      return "";
+    }
+  }
+
+  function clearSearchQuery() {
+    try {
+      sessionStorage.removeItem(SEARCH_KEY);
+    } catch (err) {
+      // ignore storage errors
+    }
+  }
+
+  function filterProductsByQuery(products, query) {
+    if (!query) {
+      return products;
+    }
+    const needle = query.toLowerCase();
+    return products.filter(function (product) {
+      const title = String((product && product.title) || "").toLowerCase();
+      return title.indexOf(needle) !== -1;
+    });
   }
 
   function renderProducts(products) {
@@ -223,30 +421,29 @@
   async function loadProducts() {
     const grid = document.getElementById("featuredProducts");
     const status = document.getElementById("productsStatus");
+    const query = getSearchQuery();
     if (!grid) {
       return;
     }
 
     setStatus(status, "Loading products...", "");
 
-    try {
-      const url =
-        API.baseUrl +
-        "/" +
-        encodeURIComponent(API.username) +
-        "/products?per_page=12";
-      const payload = await fetchJson(url);
-      const products = Array.isArray(payload && payload.data) ? payload.data : [];
-      if (!products.length) {
-        grid.innerHTML = "";
-        setStatus(status, "No products found for this store.", "warn");
-        return;
-      }
-      renderProducts(products);
-      setStatus(status, "Live products loaded successfully.", "success");
-    } catch (error) {
+    const filteredProducts = filterProductsByQuery(CUSTOM_PRODUCTS, query);
+    if (query && !filteredProducts.length) {
       grid.innerHTML = "";
-      setStatus(status, "Could not load products: " + error.message, "error");
+      setStatus(status, "No products found for \"" + query + "\".", "warn");
+      return;
+    }
+
+    const productsToRender = isHomePage() ? filteredProducts.slice(0, 8) : filteredProducts;
+    renderProducts(productsToRender);
+
+    if (query) {
+      setStatus(status, "Showing results for \"" + query + "\".", "success");
+    } else if (isHomePage()) {
+      setStatus(status, "Showing top products. Tap Show All for full catalog.", "success");
+    } else {
+      setStatus(status, "Products loaded successfully.", "success");
     }
   }
 
@@ -275,8 +472,12 @@
       renderBlogs(blogs);
       setStatus(status, "Live blogs loaded successfully.", "success");
     } catch (error) {
-      grid.innerHTML = "";
-      setStatus(status, "Could not load blogs: " + error.message, "error");
+      renderBlogs(FALLBACK_BLOGS);
+      setStatus(
+        status,
+        "Live API unavailable right now, showing backup blogs.",
+        "warn"
+      );
     }
   }
 
@@ -341,9 +542,39 @@
     startAuto();
   }
 
+  function initBottomSearch() {
+    document.querySelectorAll(".js-bottom-search").forEach(function (link) {
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+        const currentQuery = getSearchQuery();
+        const input = window.prompt("Search products", currentQuery);
+
+        if (input === null) {
+          return;
+        }
+
+        const query = String(input).trim();
+        if (!query) {
+          clearSearchQuery();
+          window.location.href = "products.html";
+          return;
+        }
+
+        try {
+          sessionStorage.setItem(SEARCH_KEY, query);
+        } catch (err) {
+          // ignore storage errors
+        }
+
+        window.location.href = "products.html?q=" + encodeURIComponent(query);
+      });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     updateCartCount();
     initBannerSlider();
+    initBottomSearch();
     loadProducts();
     loadBlogs();
 
@@ -381,13 +612,23 @@
       }, 1000);
     });
 
-    document.querySelectorAll("form").forEach(function (form) {
+    document.querySelectorAll("form.js-demo-form").forEach(function (form) {
       form.addEventListener("submit", function (event) {
         event.preventDefault();
         alert("Thanks! We received your message.");
         form.reset();
       });
     });
+
+    const loginForm = document.querySelector(".js-login-form");
+    if (loginForm) {
+      loginForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const emailInput = loginForm.querySelector('input[type="email"]');
+        const email = emailInput ? String(emailInput.value || "").trim() : "";
+        alert("Login request submitted for " + (email || "your account") + ".");
+      });
+    }
   });
 
   window.CGCart = {

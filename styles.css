@@ -26,6 +26,7 @@ body {
   background: radial-gradient(circle at top left, #fff5f5 0%, #ffffff 45%, #f8fafc 100%);
   line-height: 1.6;
   overflow-x: hidden;
+  padding-bottom: 0;
 }
 
 a {
@@ -73,7 +74,7 @@ header {
   object-fit: contain;
 }
 
-nav ul {
+header nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
@@ -82,14 +83,14 @@ nav ul {
   color: #f1f3f7;
 }
 
-nav a {
+header nav a {
   padding: 9px 2px;
   border-bottom: 2px solid transparent;
   transition: 0.2s ease;
 }
 
-nav a:hover,
-nav a.active {
+header nav a:hover,
+header nav a.active {
   color: var(--primary);
   border-color: var(--primary);
 }
@@ -448,6 +449,11 @@ h2 {
   width: 100%;
 }
 
+.show-all-wrap {
+  margin-top: 22px;
+  text-align: center;
+}
+
 .page-hero {
   padding: 38px 0;
 }
@@ -460,6 +466,12 @@ h2 {
 .about-grid,
 .contact-grid,
 .cart-layout {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.auth-grid {
   display: grid;
   gap: 18px;
   grid-template-columns: 1fr 1fr;
@@ -556,6 +568,58 @@ form,
 
 .contact-form {
   padding: 24px;
+}
+
+.auth-form {
+  padding: 24px;
+}
+
+.auth-form h3 {
+  margin-bottom: 4px;
+}
+
+.auth-form p {
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.auth-help-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.auth-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #344054;
+  font-size: 0.95rem;
+}
+
+.auth-check input {
+  width: auto;
+}
+
+.auth-link {
+  color: var(--primary-dark);
+  font-weight: 700;
+  font-size: 0.94rem;
+}
+
+.auth-link:hover {
+  color: var(--primary);
+}
+
+.auth-alt {
+  border-top: 1px solid var(--line);
+  margin-top: 4px;
+  padding-top: 10px;
+  text-align: center;
+  color: #475467;
+  font-size: 0.94rem;
 }
 
 input,
@@ -715,11 +779,83 @@ textarea {
   font-size: 0.9rem;
 }
 
+.fixed-bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 80;
+  display: none;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+  background: #ffffff;
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -10px 24px rgba(16, 24, 40, 0.12);
+  padding: 6px 8px calc(6px + env(safe-area-inset-bottom));
+}
+
+.fixed-bottom-nav .nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 38px;
+  border-radius: 11px;
+  border-bottom: none !important;
+  padding: 0;
+  color: #111827;
+  font-size: 1.2rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.fixed-bottom-nav .nav-icon.active {
+  color: var(--primary);
+  background: #f4f6fb;
+}
+
+.fixed-bottom-nav .nav-icon-whatsapp {
+  color: inherit;
+}
+
+.fixed-bottom-nav .wa-svg {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+
+.fixed-bottom-nav .nav-badge {
+  position: absolute;
+  top: 2px;
+  right: 20%;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 99px;
+  background: #ff2c55;
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+@media (max-width: 820px) {
+  body {
+    padding-bottom: 84px;
+  }
+
+  .fixed-bottom-nav {
+    display: grid;
+  }
+}
+
 @media (max-width: 1024px) {
   .hero-grid,
   .about-grid,
   .contact-grid,
-  .cart-layout {
+  .cart-layout,
+  .auth-grid {
     grid-template-columns: 1fr;
   }
 
@@ -744,11 +880,11 @@ textarea {
     justify-content: center;
   }
 
-  nav {
+  header nav {
     width: 100%;
   }
 
-  nav ul {
+  header nav ul {
     justify-content: center;
     flex-wrap: wrap;
     overflow: visible;
@@ -841,7 +977,7 @@ textarea {
     justify-self: start;
   }
 
-  nav {
+  header nav {
     display: none;
     grid-column: 1 / -1;
     grid-row: 2;
@@ -851,11 +987,11 @@ textarea {
     padding-bottom: 4px;
   }
 
-  body.menu-open nav {
+  body.menu-open header nav {
     display: block;
   }
 
-  nav ul {
+  header nav ul {
     justify-content: flex-start;
     flex-direction: column;
     align-items: flex-start;
@@ -863,7 +999,7 @@ textarea {
     width: 100%;
   }
 
-  nav a {
+  header nav a {
     display: block;
     width: 100%;
     padding: 8px 0;

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2f2115"/>
+      <stop offset="55%" stop-color="#1a130e"/>
+      <stop offset="100%" stop-color="#090807"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="70%" r="45%">
+      <stop offset="0%" stop-color="#ffcc6e" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ffcc6e" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6d4425"/>
+      <stop offset="100%" stop-color="#3b2313"/>
+    </linearGradient>
+    <radialGradient id="dial" cx="45%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#2b2b2b"/>
+      <stop offset="100%" stop-color="#0f0f0f"/>
+    </radialGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffeebf"/>
+      <stop offset="100%" stop-color="#d4a04b"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <ellipse cx="600" cy="650" rx="380" ry="95" fill="url(#glow)"/>
+  <rect x="0" y="620" width="1200" height="280" fill="url(#wood)"/>
+
+  <circle cx="600" cy="400" r="255" fill="url(#dial)" stroke="url(#ring)" stroke-width="26"/>
+  <circle cx="600" cy="400" r="16" fill="#f2cf88"/>
+  <circle cx="600" cy="400" r="8" fill="#22160d"/>
+
+  <line x1="600" y1="400" x2="600" y2="255" stroke="#f4d79a" stroke-width="12" stroke-linecap="round"/>
+  <line x1="600" y1="400" x2="705" y2="460" stroke="#f7e5bb" stroke-width="10" stroke-linecap="round"/>
+
+  <g stroke="#e7c37b" stroke-width="7" stroke-linecap="round">
+    <line x1="600" y1="170" x2="600" y2="200"/>
+    <line x1="600" y1="600" x2="600" y2="630"/>
+    <line x1="370" y1="400" x2="400" y2="400"/>
+    <line x1="800" y1="400" x2="830" y2="400"/>
+    <line x1="438" y1="238" x2="458" y2="258"/>
+    <line x1="742" y1="542" x2="762" y2="562"/>
+    <line x1="438" y1="562" x2="458" y2="542"/>
+    <line x1="742" y1="258" x2="762" y2="238"/>
+  </g>
+
+  <text x="600" y="815" text-anchor="middle" font-family="Outfit, Arial, sans-serif" font-size="78" font-weight="700" fill="#f4d79a">Custom Wall Clock</text>
+</svg>
