@@ -95,6 +95,17 @@ header nav a.active {
   border-color: var(--primary);
 }
 
+@media (min-width: 1025px) {
+  header nav ul li:not(.nav-login-item) {
+    display: none;
+  }
+
+  header nav ul {
+    justify-content: flex-end;
+    gap: 12px;
+  }
+}
+
 .header-actions {
   display: flex;
   align-items: center;
@@ -803,41 +814,32 @@ textarea {
   border-radius: 11px;
   border-bottom: none !important;
   padding: 0;
-  color: #111827;
-  font-size: 1.2rem;
+  color: #1f2937;
   transition: background 0.2s ease, color 0.2s ease;
 }
 
 .fixed-bottom-nav .nav-icon.active {
   color: var(--primary);
-  background: #f4f6fb;
+  background: #f1f4f9;
+}
+
+.fixed-bottom-nav .nav-svg {
+  width: 21px;
+  height: 21px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .fixed-bottom-nav .nav-icon-whatsapp {
-  color: inherit;
+  color: #22c55e;
 }
 
-.fixed-bottom-nav .wa-svg {
-  width: 26px;
-  height: 26px;
-  display: block;
-}
-
-.fixed-bottom-nav .nav-badge {
-  position: absolute;
-  top: 2px;
-  right: 20%;
-  min-width: 16px;
-  height: 16px;
-  border-radius: 99px;
-  background: #ff2c55;
-  color: #ffffff;
-  font-size: 0.65rem;
-  font-weight: 700;
-  display: grid;
-  place-items: center;
-  padding: 0 4px;
-  line-height: 1;
+.fixed-bottom-nav .nav-icon-whatsapp .nav-svg {
+  stroke: currentColor;
+  fill: none;
 }
 
 @media (max-width: 820px) {
