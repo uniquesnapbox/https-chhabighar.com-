@@ -96,13 +96,20 @@ header nav a.active {
 }
 
 @media (min-width: 1025px) {
-  header nav ul li:not(.nav-login-item) {
-    display: none;
+  header nav ul {
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: nowrap;
+  }
+}
+
+@media (min-width: 821px) {
+  .menu-toggle {
+    display: none !important;
   }
 
-  header nav ul {
-    justify-content: flex-end;
-    gap: 12px;
+  header nav {
+    display: block !important;
   }
 }
 
@@ -374,6 +381,9 @@ h2 {
   padding: 16px;
   text-align: center;
   transition: 0.25s;
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
 
 .category-card:hover {
@@ -408,6 +418,7 @@ h2 {
   display: flex;
   flex-direction: column;
   box-shadow: 0 8px 20px rgba(16, 24, 40, 0.05);
+  cursor: pointer;
 }
 
 .product-card img,
@@ -458,6 +469,42 @@ h2 {
 .product-info .btn {
   margin-top: 6px;
   width: 100%;
+}
+
+.product-detail {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.product-detail-media img {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+
+.product-detail-body h1 {
+  margin: 8px 0 8px;
+  font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+}
+
+.product-detail-category {
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.product-detail-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.product-detail-actions .btn {
+  min-width: 180px;
 }
 
 .show-all-wrap {
@@ -857,7 +904,8 @@ textarea {
   .about-grid,
   .contact-grid,
   .cart-layout,
-  .auth-grid {
+  .auth-grid,
+  .product-detail {
     grid-template-columns: 1fr;
   }
 
@@ -1118,6 +1166,11 @@ textarea {
 
   .product-info .btn {
     font-size: 0.95rem;
+  }
+
+  .product-detail-actions .btn {
+    width: 100%;
+    min-width: 0;
   }
 
   .panel,

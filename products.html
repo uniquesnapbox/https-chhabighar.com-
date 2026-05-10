@@ -39,6 +39,17 @@
   </header>
 
   <main>
+    <section class="categories categories-strip">
+      <div class="container">
+        <div class="section-head">
+          <h2>Shop By Categories</h2>
+          <p>Select a category to view matching products.</p>
+        </div>
+        <p id="categoriesStatus" class="api-status">Loading categories...</p>
+        <div class="category-grid" id="categoriesGrid"></div>
+      </div>
+    </section>
+
     <section id="featured" class="categories">
       <div class="container">
         <div class="section-head">
@@ -88,10 +99,11 @@
         <div class="footer-col">
           <h3>Categories</h3>
           <ul>
-            <li><a href="products.html">Custom Photo Frames</a></li>
-            <li><a href="products.html">Name Stickers</a></li>
-            <li><a href="products.html">School Supplies</a></li>
-            <li><a href="products.html">Personalized Gifts</a></li>
+            <li><a href="products.html?category=led-frame">LED Frame</a></li>
+            <li><a href="products.html?category=mug">Mug</a></li>
+            <li><a href="products.html?category=photo-frame">Photo Frame</a></li>
+            <li><a href="products.html?category=pillow">Pillow</a></li>
+            <li><a href="products.html?category=t-shirt">T Shirt</a></li>
           </ul>
         </div>
 
@@ -122,8 +134,8 @@
       <svg class="nav-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7A8.5 8.5 0 0 1 7.8 19l-3.3 1 1.1-3.2A8.5 8.5 0 1 1 20.5 11.7Z"/><path d="M9.1 9.4c.2-.4.4-.4.6-.4h.5c.2 0 .4 0 .5.4.2.4.8 2 .9 2.1.1.2.1.3 0 .5l-.4.6c-.1.1-.2.3 0 .5.2.4.8 1.3 1.8 2.1 1.2.9 2.2 1.2 2.5 1.4.2.1.4.1.5 0l.8-.9c.1-.2.3-.2.5-.1l2.2 1.1c.2.1.4.2.4.4 0 .2-.2 1.3-.9 1.8-.6.5-1.3.6-1.8.6-.4 0-1-.1-1.7-.4-2.9-1.3-4.8-4.4-5-4.8-.2-.3-1.2-1.6-1.2-3 0-1.4.7-2.1.9-2.4Z"/></svg>
     </a>
   </nav>
-<script src="api-config.js"></script>
-  <script src="app.js"></script>
+<script src="api-config.js?v=20260510-6"></script>
+  <script src="app.js?v=20260510-6"></script>
 </body>
 </html>
 

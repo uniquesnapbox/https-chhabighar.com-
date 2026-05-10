@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CG Prints | Product</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container header-main">
+      <a class="brand" href="index.html" aria-label="CG Prints Home">
+        <img src="CG p LOGO (1).png" alt="CG Prints Logo" />
+      </a>
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a class="active" href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="blogs.html">Blogs</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li class="nav-login-item"><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn menu-toggle js-menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+        <a class="icon-btn" href="cart.html" aria-label="Open cart">
+          <span>&#128722;</span>
+          <span class="cart-count js-cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="categories">
+      <div class="container">
+        <div class="panel product-detail js-product-detail">
+          <div class="product-detail-media">
+            <img id="productDetailImage" src="banner/d1e43480-092e-4eba-93ea-4674bd090c20.png" alt="Product image" />
+          </div>
+          <div class="product-detail-body">
+            <span class="chip" id="productDetailBadge">Top Pick</span>
+            <h1 id="productDetailTitle">Loading product...</h1>
+            <p class="product-detail-category">Category: <strong id="productDetailCategory">-</strong></p>
+            <div class="price-row">
+              <span class="price" id="productDetailPrice">Rs.0</span>
+              <span class="old-price" id="productDetailOldPrice"></span>
+            </div>
+            <p id="productDetailStatus" class="api-status">Loading product details...</p>
+            <div class="product-detail-actions">
+              <button class="btn btn-primary js-add-to-cart" id="productDetailAddToCart">Add to Cart</button>
+              <a class="btn btn-light" href="products.html">Back to Products</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="copyright">Copyright 2026 ChhabiGhar. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="api-config.js?v=20260510-6"></script>
+  <script src="app.js?v=20260510-6"></script>
+</body>
+</html>

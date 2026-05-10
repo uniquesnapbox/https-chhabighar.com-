@@ -19,6 +19,13 @@
     return headers;
   }
 
+  function getLiveBaseUrl() {
+    if (API.liveBaseUrl) {
+      return String(API.liveBaseUrl).replace(/\/+$/, "");
+    }
+    return "https://zestixe.in/" + encodeURIComponent(API.username);
+  }
+
   function setCheckoutMessage(node, text, type) {
     if (!node) {
       return;
@@ -39,6 +46,13 @@
     const clearBtn = document.getElementById("clearCart");
     const checkoutBtn = document.getElementById("checkoutBtn");
     const checkoutMessageNode = document.getElementById("checkoutMessage");
+    const liveCartStatusNode = document.getElementById("liveCartStatus");
+    const liveCheckoutBtn = document.getElementById("liveCheckoutBtn");
+    const liveCartBtn = document.getElementById("liveCartBtn");
+    const liveCartFrame = document.getElementById("liveCartFrame");
+    const liveBaseUrl = getLiveBaseUrl();
+    const liveCartUrl = liveBaseUrl + "/cart";
+    const liveCheckoutUrl = liveBaseUrl + "/checkout";
 
     if (
       !cartItemsNode ||
@@ -50,6 +64,17 @@
       !checkoutMessageNode
     ) {
       return;
+    }
+
+    if (liveCartFrame) {
+      liveCartFrame.src = liveCartUrl;
+    }
+    if (liveCartStatusNode) {
+      setCheckoutMessage(
+        liveCartStatusNode,
+        "Live bridge ready: " + liveBaseUrl,
+        "success"
+      );
     }
 
     function refresh() {
@@ -133,15 +158,6 @@
         return;
       }
 
-      if (!API.apiKey || API.apiKey === "YOUR_SYNC_API_KEY") {
-        setCheckoutMessage(
-          checkoutMessageNode,
-          "Set `apiKey` in api-config.js before placing order.",
-          "warn"
-        );
-        return;
-      }
-
       const customerName = document.getElementById("checkoutName").value.trim();
       const customerPhone = document.getElementById("checkoutPhone").value.trim();
       const customerEmail = document.getElementById("checkoutEmail").value.trim();
@@ -193,40 +209,63 @@
         order_notes: "Order from ChhabiGhar static website"
       };
 
-      const endpoint =
-        API.baseUrl + "/" + encodeURIComponent(API.username) + "/orders";
+      const endpoints = [
+        API.baseUrl + "/" + encodeURIComponent(API.username) + "/orders",
+        API.baseUrl + "/" + encodeURIComponent(API.username) + "/checkout/place-order"
+      ];
 
       checkoutBtn.disabled = true;
       setCheckoutMessage(checkoutMessageNode, "Placing order...", "");
 
       try {
-        const response = await fetch(endpoint, {
-          method: "POST",
-          headers: getApiHeaders(),
-          body: JSON.stringify(payload)
-        });
+        let success = false;
+        let lastError = new Error("Checkout failed.");
 
-        let body = null;
-        try {
-          body = await response.json();
-        } catch (err) {
-          body = null;
+        for (let i = 0; i < endpoints.length; i += 1) {
+          try {
+            const response = await fetch(endpoints[i], {
+              method: "POST",
+              headers: getApiHeaders(),
+              body: JSON.stringify(payload)
+            });
+
+            let body = null;
+            try {
+              body = await response.json();
+            } catch (err) {
+              body = null;
+            }
+
+            if (!response.ok) {
+              lastError = new Error((body && body.message) || "Checkout failed.");
+              continue;
+            }
+
+            const orderNumber = body && body.data ? body.data.order_number : null;
+            setCheckoutMessage(
+              checkoutMessageNode,
+              "Order placed successfully" + (orderNumber ? " (Order #" + orderNumber + ")" : "") + ".",
+              "success"
+            );
+            window.CGCart.saveCart([]);
+            refresh();
+            success = true;
+            break;
+          } catch (error) {
+            lastError = error;
+          }
         }
 
-        if (!response.ok) {
-          throw new Error((body && body.message) || "Checkout failed.");
+        if (!success) {
+          throw lastError;
         }
-
-        const orderNumber = body && body.data ? body.data.order_number : null;
+      } catch (error) {
         setCheckoutMessage(
           checkoutMessageNode,
-          "Order placed successfully" + (orderNumber ? " (Order #" + orderNumber + ")" : "") + ".",
-          "success"
+          "API checkout unavailable. Redirecting to live checkout...",
+          "warn"
         );
-        window.CGCart.saveCart([]);
-        refresh();
-      } catch (error) {
-        setCheckoutMessage(checkoutMessageNode, error.message, "error");
+        window.location.href = liveCheckoutUrl;
       } finally {
         checkoutBtn.disabled = false;
       }
@@ -266,6 +305,16 @@
     });
 
     checkoutBtn.addEventListener("click", submitOrder);
+    if (liveCheckoutBtn) {
+      liveCheckoutBtn.addEventListener("click", function () {
+        window.location.href = liveCheckoutUrl;
+      });
+    }
+    if (liveCartBtn) {
+      liveCartBtn.addEventListener("click", function () {
+        window.open(liveCartUrl, "_blank", "noopener");
+      });
+    }
 
     refresh();
   }

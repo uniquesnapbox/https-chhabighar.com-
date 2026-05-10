@@ -24,13 +24,26 @@
       width: min(460px, 100%);
       box-shadow: var(--shadow);
     }
+
+    .live-login-wrap {
+      margin-top: 14px;
+      width: min(980px, 100%);
+    }
+
+    .live-login-frame {
+      width: 100%;
+      min-height: 68vh;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+    }
   </style>
 </head>
 <body>
   <main class="login-only-wrap">
     <form class="contact-form auth-form js-login-form login-only-card">
       <h3>Sign In</h3>
-      <p>Use your registered email and password.</p>
+      <p>Connected to CHHABIGHAR live login.</p>
       <input type="email" placeholder="Email Address" required />
       <input type="password" placeholder="Password" required />
       <div class="auth-help-row">
@@ -40,10 +53,21 @@
         </label>
         <a href="contact.html" class="auth-link">Forgot password?</a>
       </div>
-      <button class="btn btn-primary" type="submit">Login</button>
+      <button class="btn btn-primary" type="submit">Open Live Login</button>
+      <a id="openLiveLoginBtn" class="btn btn-light" href="https://zestixe.in/chhabighar/customer/login" target="_blank" rel="noopener">Open in New Tab</a>
+      <p id="loginApiStatus" class="api-status">Preparing live login...</p>
     </form>
+    <section class="live-login-wrap">
+      <iframe
+        id="liveLoginFrame"
+        class="live-login-frame"
+        src="https://zestixe.in/chhabighar/customer/login"
+        title="CHHABIGHAR Live Login"
+        loading="lazy"></iframe>
+    </section>
   </main>
-  <script src="app.js"></script>
+  <script src="api-config.js?v=20260510-6"></script>
+  <script src="app.js?v=20260510-6"></script>
 </body>
 </html>
 
